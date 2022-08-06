@@ -16,4 +16,8 @@ class LibroService(
     fun findByName(name: String): Libro? {
         return libroRepository.findByName(name)
     }
+
+    fun saveLibro(libro: Libro): String {
+        return libroRepository.save(libro).let { "The book id is ${it.id} !" }
+    }
 }
