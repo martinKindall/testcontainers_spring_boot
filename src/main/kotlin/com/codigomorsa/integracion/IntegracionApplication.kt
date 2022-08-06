@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class IntegracionApplication
+open class IntegracionApplication
 
 fun main(args: Array<String>) {
 	runApplication<IntegracionApplication>(*args)
