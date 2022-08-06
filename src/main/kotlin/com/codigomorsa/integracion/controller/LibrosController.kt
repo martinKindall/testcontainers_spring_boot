@@ -1,13 +1,24 @@
 package com.codigomorsa.integracion.controller
 
+import com.codigomorsa.integracion.model.Libro
+import com.codigomorsa.integracion.service.LibroService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class LibrosController {
+class LibrosController(
+        val libroService: LibroService
+) {
 
     @GetMapping("/libro")
-    fun getAllLibros(): String {
-        return "Mis libros"
+    fun getAllLibros(
+            @RequestParam(value = "name", required = false) name: String?
+    ): List<Libro> {
+        return name?.let {
+            libroService.findByName(it)?.let {
+                listOf(it)
+            }?: listOf()
+        }?: libroService.findAll()
     }
 }
